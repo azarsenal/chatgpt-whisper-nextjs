@@ -112,8 +112,17 @@ export default function Home() {
   const whisperRequest = async (audioFile: Blob) => {
     setError(null);
     setLoading(true);
+    console.log('audioFile in whisperRequest fn', audioFile);
     const formData = new FormData();
     formData.append('file', audioFile, 'audio.wav');
+    console.log('formData in whisperRequest fn', formData);
+    console.log('Does formData have a file key?', formData.has('file'));
+    console.log(
+      'formData.get("file") in whisperRequest fn',
+      formData.get('file')
+    );
+    console.log();
+
     try {
       const response = await fetch('/api/whisper', {
         method: 'POST',
